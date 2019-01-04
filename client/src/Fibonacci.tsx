@@ -1,4 +1,4 @@
-import { Component, FormEvent } from "react";
+import React, { Component, FormEvent } from "react";
 import Axios from "axios";
 
 interface FibonacciState {
@@ -110,7 +110,8 @@ export default class Fibonacci extends Component {
      * Renders fibonacci
      * @returns
      */
-    render() {
+    public render(): JSX.Element
+    {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -129,6 +130,6 @@ export default class Fibonacci extends Component {
                 <h3>Calculated values:</h3>
                 {this.renderValues()}
             </div>
-        )
+        );
     }
 }
