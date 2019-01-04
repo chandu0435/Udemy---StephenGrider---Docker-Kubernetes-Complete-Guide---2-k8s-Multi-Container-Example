@@ -6,7 +6,8 @@
     "dependencies": {
         "express": "^4.16.4",
         "nodemon": "^1.18.9",
-        "redis": "^2.8.0"
+        "redis": "^2.8.0",
+        "typescript": "^3.2.2"
     },
     "devDependencies": {
         "@types/node": "^10.12.18",
