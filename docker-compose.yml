@@ -4,27 +4,62 @@ services:
     image: 'postgres:latest'
   redis:
     image: 'redis:latest'
-  server:
+  nginx:
+    restart: always
     build:
       dockerfile: Dockerfile.dev
-      context: ./server
+      context: ./nginx
+    ports:
+      # 80 on nginx will be routed to 3050 locally
+      - '3050:80'
+    depends_on:
+      - api
+      - client
+  api:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./api
     volumes:
       # do not touch the app/node_modules folder
       - /app/node_modules
       # share the other (non node_modules) folders inside
-      # the server directory with the app directory
+      # the api directory with the app directory
       # in the container
-      - ./server:/app
+      - ./api:/app
     environment:
       - REDIS_HOST=redis
-      - REDIS_PORT=6379
-      # default postgres user is postgres
-      - PGUSER=postgres
-      # name of the postgres service (the docker-compose service above)
-      - PGHOST=postgres
-      # default postgres database is postgres
-      - PGDATABASE=postgres
-      # default postgres password is postgres_password
-      - PGPASSWORD=postgres_password
-      # default postgres port
-      - PGPORT=5432
+      - REDIS_PORT=6379 
+      - PGUSER=postgres               # default postgres user is postgres
+      - PGHOST=postgres               # name of the postgres service (the docker-compose service above)
+      - PGDATABASE=postgres           # default postgres database is postgres
+      - PGPASSWORD=postgres_password  # default postgres password is postgres_password
+      - PGPORT=5432                   # default postgres port
+    # don't set up until postgres and redis are set up
+    depends_on:
+      - postgres
+      - redis
+  client:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./client
+    volumes:
+      - /app/node_modules
+      - ./client:/app
+    # don't set up until postgres and redis are set up
+    depends_on:
+      - postgres
+      - redis
+  worker:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./worker
+    volumes:
+      - /app/node_modules
+      - ./worker:/app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379 
+    # don't set up until postgres and redis are set up
+    depends_on:
+      - postgres
+      - redis
