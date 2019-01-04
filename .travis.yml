@@ -11,7 +11,7 @@ before_install:
 
 script:
   # -- --coverage to make sure the tests do not wait for input (CLI) after completion
-  - docker run run nick3141/docker-kubernetes-complete-guide-example-0-react-test npm test -- --coverage
+  - docker run nick3141/docker-kubernetes-complete-guide-example-0-react-test npm test -- --coverage
 
 after_success:
   # build images with the production docker files after tests run successfully
