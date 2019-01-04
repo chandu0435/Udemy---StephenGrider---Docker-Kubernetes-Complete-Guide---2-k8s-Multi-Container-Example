@@ -1,0 +1,37 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "nick3141/docker-kubernetes-complete-guide-example-0-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "api",
+            "image": "nick3141/docker-kubernetes-complete-guide-example-0-api",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "nick3141/docker-kubernetes-complete-guide-example-0-worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "nick3141/docker-kubernetes-complete-guide-example-0-nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": [
+                "client",
+                "server"
+            ]
+        }
+    ]
+}

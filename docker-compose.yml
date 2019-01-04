@@ -1,9 +1,27 @@
+# @note: this docker-compose file is used for development only
+# for production, .travis.yml creates and stores the images
+# and Dockerrun.aws.json glues them on AWS
 version: '3'
 services:
+  # ****************************************************
+  # ******************* postgres ***********************
+  # ****************************************************
+  # host name (to be accessed by other containers): postgres
+  # http://postgres
   postgres:
     image: 'postgres:latest'
+  # ****************************************************
+  # ******************** redis *************************
+  # ****************************************************
+  # host name (to be accessed by other containers): redis
+  # http://redis
   redis:
     image: 'redis:latest'
+  # ****************************************************
+  # ******************** nginx *************************
+  # ****************************************************
+  # host name (to be accessed by other containers): nginx
+  # http://nginx
   nginx:
     restart: always
     build:
@@ -15,6 +33,11 @@ services:
     depends_on:
       - api
       - client
+  # ****************************************************
+  # ********************* api **************************
+  # ****************************************************
+  # host name (to be accessed by other containers): api
+  # http://api
   api:
     build:
       dockerfile: Dockerfile.dev
@@ -38,6 +61,11 @@ services:
     depends_on:
       - postgres
       - redis
+  # ****************************************************
+  # ******************** client ************************
+  # ****************************************************
+  # host name (accessed by other containers with): client
+  # http://client
   client:
     build:
       dockerfile: Dockerfile.dev
@@ -49,6 +77,11 @@ services:
     depends_on:
       - postgres
       - redis
+  # ****************************************************
+  # ******************** worker ************************
+  # ****************************************************
+  # host name (to be accessed by other containers): worker
+  # http://worker
   worker:
     build:
       dockerfile: Dockerfile.dev
