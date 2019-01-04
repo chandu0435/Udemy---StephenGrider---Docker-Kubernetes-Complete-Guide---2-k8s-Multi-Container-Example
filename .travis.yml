@@ -28,3 +28,16 @@ after_success:
   - docker push nick3141/docker-kubernetes-complete-guide-example-0-nginx
   - docker push nick3141/docker-kubernetes-complete-guide-example-0-api
   - docker push nick3141/docker-kubernetes-complete-guide-example-0-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-southeast-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-ap-southeast-2-875276383652
+  bucket_path: docker-multi-path
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secutre: $AWS_SECRET_KEY
