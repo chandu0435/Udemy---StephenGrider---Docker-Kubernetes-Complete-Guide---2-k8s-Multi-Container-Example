@@ -1,0 +1,30 @@
+version: '3'
+services:
+  postgres:
+    image: 'postgres:latest'
+  redis:
+    image: 'redis:latest'
+  server:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+    volumes:
+      # do not touch the app/node_modules folder
+      - /app/node_modules
+      # share the other (non node_modules) folders inside
+      # the server directory with the app directory
+      # in the container
+      - ./server:/app
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      # default postgres user is postgres
+      - PGUSER=postgres
+      # name of the postgres service (the docker-compose service above)
+      - PGHOST=postgres
+      # default postgres database is postgres
+      - PGDATABASE=postgres
+      # default postgres password is postgres_password
+      - PGPASSWORD=postgres_password
+      # default postgres port
+      - PGPORT=5432
