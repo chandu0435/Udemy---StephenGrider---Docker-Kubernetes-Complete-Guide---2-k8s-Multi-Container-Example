@@ -18,12 +18,14 @@
         {
             "name": "worker",
             "image": "nick3141/docker-kubernetes-complete-guide-example-0-worker",
+            "hostname": "worker",
             "essential": false,
             "memory": 128
         },
         {
             "name": "nginx",
             "image": "nick3141/docker-kubernetes-complete-guide-example-0-nginx",
+            "hostname": "nginx",
             "essential": true,
             "portMappings": [
                 {
@@ -32,8 +34,8 @@
                 }
             ],
             "links": [
-                "client",
-                "api"
+                "api",
+                "client"
             ],
             "memory": 128
         }
