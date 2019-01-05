@@ -3,8 +3,8 @@ WORKDIR /app
 COPY ./package.json ./
 # install typescript globally
 RUN npm install
-RUN npm run server:compile
 COPY . .
+RUN npm run server:compile
 # compile typescript in WORKDIR
 CMD ["npm", "start"]
 # CMD ["npm", "run", "start"]
