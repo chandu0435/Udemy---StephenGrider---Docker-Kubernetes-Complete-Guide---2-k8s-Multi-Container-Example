@@ -1,8 +1,8 @@
 FROM node:alpine
 WORKDIR /app
 COPY ./package.json ./
-RUN npm install
-RUN sudo npm run server:compile
+RUN npm install && \
+    su npm run server:compile
 COPY . .
 CMD ["npm", "start"]
 # CMD ["npm", "run", "start"]
