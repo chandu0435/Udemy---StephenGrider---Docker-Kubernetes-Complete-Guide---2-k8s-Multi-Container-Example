@@ -20,10 +20,10 @@ after_success:
   - docker build -t nick3141/docker-kubernetes-complete-guide-example-0-nginx ./nginx
   - docker build -t nick3141/docker-kubernetes-complete-guide-example-0-api ./api
   - docker build -t nick3141/docker-kubernetes-complete-guide-example-0-worker ./worker
-  # push new images to docker hub
   # log in to docker CLI
   # username and password are stored on the travis project as encrypted variables
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # push new images to docker hub
   - docker push nick3141/docker-kubernetes-complete-guide-example-0-client
   - docker push nick3141/docker-kubernetes-complete-guide-example-0-nginx
   - docker push nick3141/docker-kubernetes-complete-guide-example-0-api
