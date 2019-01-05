@@ -1,14 +1,9 @@
 FROM node:alpine
 WORKDIR /app
 COPY ./package.json ./
-# install typescript globally
 RUN npm install
 COPY . .
-RUN npm run server:compile
 # compile typescript in WORKDIR
+# after the packages are installed
+RUN npm run server:compile
 CMD ["npm", "start"]
-# CMD ["npm", "run", "start"]
-# At the time of writing this, deployment seems
-# to be failing on the npm start command...
-# See if RUN makes the deployment work
-# RUN npm start
