@@ -1,9 +1,12 @@
 FROM node:alpine
 WORKDIR /app
 COPY ./package.json ./
-RUN npm install && \
-    su npm run server:compile
+# install typescript globally
+RUN npm install\
+    && npm install tsc -g
 COPY . .
+# compile typescript in WORKDIR
+RUN tsc
 CMD ["npm", "start"]
 # CMD ["npm", "run", "start"]
 # At the time of writing this, deployment seems

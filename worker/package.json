@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "start": "npm run server:compile && node index.js",
+        "start": "node index.js",
         "dev": "npm run server:compile && concurrently --kill-others \"npm run server:compile:watch\" \"npm run server:serve:watch\" ",
         "server:compile:watch": "tsc --watch --pretty --preserveWatchOutput",
         "server:compile": "tsc --pretty --preserveWatchOutput",
