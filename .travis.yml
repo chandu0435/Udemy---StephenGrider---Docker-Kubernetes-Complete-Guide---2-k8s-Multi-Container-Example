@@ -20,7 +20,7 @@ before_install:
   - gcloud container clusters get-credentials cluster-1
   # log into docker - works because docker is specified as a service above
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t nick3141/react-test -f ./client/Dockerfile.dev
+  - docker build -t nick3141/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run nick3141/react-test npm test -- --coverage
