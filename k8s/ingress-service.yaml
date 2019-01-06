@@ -19,5 +19,5 @@ spec:
           # route /api/ paths to the api cluster ip service (api deployment)
           - path: /api/
             backend:
-              serviceName: api-cluser-ip-service
+              serviceName: api-cluster-ip-service
               servicePort: 5000

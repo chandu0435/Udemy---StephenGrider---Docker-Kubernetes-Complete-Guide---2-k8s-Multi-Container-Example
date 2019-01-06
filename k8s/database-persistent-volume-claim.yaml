@@ -13,5 +13,5 @@ spec:
     requests:
       # has exactly 2 gigabytes of space
       # storage: 2Gi
-      storage: 200M
+      storage: 2Gi
   # additional options:
