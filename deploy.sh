@@ -43,15 +43,20 @@ kubectl apply -f k8s
 
 # set images
 
-kubectl set image
-    deployments/client-deployment \
-    client=nick3141/docker-kubernetes-complete-guide-example-2-client:$SHA
+# kubectl set image
+#     deployments/client-deployment \
+#     client=nick3141/docker-kubernetes-complete-guide-example-2-client:$SHA
 
+kubectl set image deployments/client-deployment client=nick3141/docker-kubernetes-complete-guide-example-2-client:$SHA
 
-kubectl set image
-    deployments/api-deployment \
-    api=nick3141/docker-kubernetes-complete-guide-example-2-api:$SHA
+# kubectl set image
+#     deployments/api-deployment \
+#     api=nick3141/docker-kubernetes-complete-guide-example-2-api:$SHA
 
-kubectl set image
-    deployments/worker-deployment \
-    worker=nick3141/docker-kubernetes-complete-guide-example-2-worker:$SHA
+kubectl set image deployments/api-deployment api=nick3141/docker-kubernetes-complete-guide-example-2-api:$SHA
+
+# kubectl set image
+#     deployments/worker-deployment \
+#     worker=nick3141/docker-kubernetes-complete-guide-example-2-worker:$SHA
+
+kubectl set image deployments/worker-deployment worker=nick3141/docker-kubernetes-complete-guide-example-2-worker:$SHA
