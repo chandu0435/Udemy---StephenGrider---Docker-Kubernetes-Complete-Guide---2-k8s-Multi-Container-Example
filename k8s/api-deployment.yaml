@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: api
+  template:
+    metadata:
+      labels:
+        component: api
+    spec:
+      containers:
+        - name: api
+          # image expects environment variables...
+          image: nick3141/docker-kubernetes-complete-guide-example-0-api
+          ports:
+            - containerPort: 5000

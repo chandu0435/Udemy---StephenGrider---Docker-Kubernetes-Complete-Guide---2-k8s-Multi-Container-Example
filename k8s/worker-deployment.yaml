@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: worker
+  template:
+    metadata:
+      labels:
+        component: worker
+    spec:
+      containers:
+        - name: worker
+          # image expects environment variables...
+          image: nick3141/docker-kubernetes-complete-guide-example-0-worker
+          # the worker doesn't need a service or ports
+          # since no other part of the application needs
+          # to interract with it
+          # - it just passively sits there working on the
+          # redis database
