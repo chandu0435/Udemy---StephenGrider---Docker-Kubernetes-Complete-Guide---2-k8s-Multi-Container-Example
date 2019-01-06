@@ -12,8 +12,26 @@ spec:
       labels:
         component: postgres
     spec:
+      volumes:
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: database-persistent-volume-claim
       containers:
         - name: postgres
           image: redis
           ports:
             - containerPort: 5432
+          volumeMounts:
+            - name: postgres-storage
+              # default location for postgres data
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres
+          env:
+            - name: PGPASSWORD
+              # get the PGPASSWORD from cluster secret
+              valueFrom:
+                secretKeyRef:
+                  # cluster secret's name
+                  name: pgpassword
+                  # cluster secret name's key
+                  key: PGPASSWORD

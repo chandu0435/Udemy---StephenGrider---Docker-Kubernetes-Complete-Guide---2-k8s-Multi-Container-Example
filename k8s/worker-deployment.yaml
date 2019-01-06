@@ -21,3 +21,8 @@ spec:
           # to interract with it
           # - it just passively sits there working on the
           # redis database
+          env:
+            - name: REDIS_HOST
+              value: redis-cluster-ip-service
+            - name: REDIS_PORT
+              value: '6379'

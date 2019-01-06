@@ -18,3 +18,25 @@ spec:
           image: nick3141/docker-kubernetes-complete-guide-example-0-api
           ports:
             - containerPort: 5000
+          env:
+            - name: REDIS_HOST
+              value: redis-cluster-ip-service
+            - name: REDIS_PORT
+              value: '6379'
+            - name: PGUSER
+              value: postgres
+            - name: PGHOST
+              value: postgres-cluster-ip-service
+            - name: PGPORT
+              value: '5432'
+            - name: PGDATABASE
+              value: postgres
+              # environment variable name
+            - name: PGPASSWORD
+              # get the postgres passwords value from a cluster secret
+              valueFrom:
+                secretKeyRef:
+                  # name of secret
+                  name: pgpassword
+                  # key inside the secret
+                  key: PGPASSWORD
