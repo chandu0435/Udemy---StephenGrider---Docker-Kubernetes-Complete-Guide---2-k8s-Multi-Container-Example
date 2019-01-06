@@ -1,10 +1,5 @@
-# AWS RDS Postgres
-- Username: `postgres`
-- Password: `postgres_password`
-- database name: `fibonacci_values`
 
-# Note:
-All Elastic Beanstalk instances set up by Dockerrun.aws.json will have access to the same environment variables set up on Elastic Beanstalk
+# Reading on Ingress Nginx
+## S 15, L 216
 
-# Development:
-`docker-compose -f ./docker-compose-dev.yml up --build`
+Just in case you wanted to understand ingress-nginx a bit better, check out this [article by Hongli Lai](https://www.joyfulbikeshedding.com/blog/2018-03-26-studying-the-kubernetes-ingress-system.html).  Hongli is an absolute genius, he co-created Phusion Passenger, an extremely popular webserver that integrates with Nginx.
