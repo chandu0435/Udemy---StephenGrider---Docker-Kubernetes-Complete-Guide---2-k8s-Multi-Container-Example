@@ -1,4 +1,7 @@
 
+# Note
+Didn't get HTTPS working in the end...
+
 # Reading on Ingress Nginx
 ## S 15, L 216
 
