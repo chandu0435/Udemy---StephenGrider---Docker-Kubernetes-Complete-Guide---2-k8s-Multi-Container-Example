@@ -1,0 +1,22 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: k8s-mulit-com-tls
+spec:
+  secretName: k8s-multi-com
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: datachron.org
+  # list of domains associated with certificate
+  dnsNames:
+    - datachron.org
+    - www.datachron.org
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        # domains that letsencrypt tries to access..?
+        domains:
+          - datachron.org
+          - www.datachron.org
