@@ -1,7 +1,7 @@
 apiVersion: certmanager.k8s.io/v1alpha1
 kind: Certificate
 metadata:
-  name: k8s-mulit-com-tls
+  name: datachron-org-tls
 spec:
   secretName: k8s-multi-com
   issuerRef:
